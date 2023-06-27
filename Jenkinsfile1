@@ -21,4 +21,11 @@ pipeline {
             }
         }
     }
+    post{
+        always{
+            mail to: "venkat.a8v@gmail.com",
+            subject: "Test Email",
+            body: "Test"
+        }
+    }
 }
