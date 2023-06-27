@@ -24,8 +24,8 @@ pipeline {
     post{
         always{
             mail to: "venkat.a8v@gmail.com",
-            subject: "Test Email",
-            body: "Test"
+            subject: "Testing the email notification",
+            body: "The test stage success"
         }
     }
 }
