@@ -4,9 +4,9 @@ pipeline {
         stage('Hello') {
             steps {
                 echo "Hello world"
-                    }
             }
         }
+    }
     post{
         failure{
             emailext to: "venkat.a8v@gmail.com",
