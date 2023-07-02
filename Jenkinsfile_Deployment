@@ -1,0 +1,40 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('clone') {
+            steps {
+                git branch: 'main', url:'https://github.com/venkat9484/Sample.git'
+                echo 'clone is success'
+            }
+        }
+        stage('build') {
+            steps {
+                sh ' mvn clean package'
+                sh 'zip -r deployment.zip target'
+                sh ' deploymnet.zip /home/slave/output
+                echo 'build is success'
+            }
+        }
+        stage('Test') {
+            steps {
+                sh 'mvn test'
+                echo 'Testing is success'
+            }
+        }
+      stage('Deployment') {
+          steps {
+            sshagent(['Deployment_18.234.201.17']) {
+                sh 'scp -rp /home/slave/output/*.zip slave@18.234.201.17:/home/slave'
+                echo 'Testing is success'
+            }
+        }
+    }
+    post{
+      always{
+          mail to: "venkat.a8v@gmail.com",
+          subject: "Deployment is success",
+          body: "The test stage success"
+        }
+    }
+}
