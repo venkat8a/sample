@@ -12,7 +12,7 @@ pipeline {
             steps {
                 sh ' mvn clean package'
                 sh 'zip -r deployment.zip target'
-                sh ' deploymnet.zip /home/slave/output
+                sh 'cp -rp deploymnet.zip /home/slave/output'
                 echo 'build is success'
             }
         }
