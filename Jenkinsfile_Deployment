@@ -26,7 +26,7 @@ pipeline {
           steps {
                 sshagent(['Deployment_18.234.201.17']) {
                   sh 'scp -rp /home/slave/output/*.zip slave@18.234.201.17:/home/slave'
-                  echo Testing is success
+                  echo 'Testing is success'
                 }
             }
         }
