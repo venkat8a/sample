@@ -22,11 +22,12 @@ pipeline {
                 echo 'Testing is success'
             }
         }
-      stage('Deployment') {
+        stage('Deployment') {
           steps {
-            sshagent(['Deployment_18.234.201.17']) {
-                sh 'scp -rp /home/slave/output/*.zip slave@18.234.201.17:/home/slave'
-                echo 'Testing is success'
+                sshagent(['Deployment_18.234.201.17']) {
+                  sh 'scp -rp /home/slave/output/*.zip slave@18.234.201.17:/home/slave'
+                  echo 'Testing is success'
+                }
             }
         }
     }
