@@ -12,7 +12,7 @@ pipeline {
             steps {
                 sh ' mvn clean package'
                 sh 'zip -r target/deployment.zip *'
-                sh 'cp -rp target/deploymnet.zip /home/slave/output'
+                sh 'cp -rp /home/slave/.jenkins/workspace/Deployment-Pipeline/deployment.zip /home/slave/output'
                 echo 'build is success'
             }
         }
