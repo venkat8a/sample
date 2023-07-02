@@ -30,12 +30,4 @@ pipeline {
             }
         }
     }
-    post{
-      always{
-          mail to: "venkat.a8v@gmail.com",
-          subject: "Deployment is success",
-          body: "The test stage success"
-        }
-    }
-}
 }
