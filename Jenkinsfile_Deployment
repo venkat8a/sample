@@ -11,8 +11,8 @@ pipeline {
         stage('build') {
             steps {
                 sh ' mvn clean package'
-                sh 'zip -r deployment.zip target'
-                sh 'cp -rp deploymnet.zip /home/slave/output'
+                sh 'zip -r target/deployment.zip *'
+                sh 'cp -rp target/deploymnet.zip /home/slave/output'
                 echo 'build is success'
             }
         }
