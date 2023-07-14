@@ -1,0 +1,36 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('clone') {
+            steps {
+                git branch: 'main', url:'https://github.com/venkat9484/Sample.git'
+                echo 'clone is success'
+            }
+        }
+        stage('build') {
+            steps {
+                sh ' mvn clean package'
+                sh 'zip -r target/deployment.zip *'
+                sh 'cp -rp /home/slave/.jenkins/workspace/Deployment-Pipeline/deployment.zip /home/slave/output'
+                echo 'build is success'
+            }
+        }
+        stage('Test') {
+            steps {
+                sh 'mvn test'
+                echo 'Testing is success'
+            }
+        }
+        stage('Sonar') {
+          environment {
+            sonarscannerhome = tool 'SonarQubeScanner'
+          }
+          steps {
+                withSonarQubeEnv('SonarQube') {
+                  sh "${sonarscannerhome}/bin/sonar-scanner"
+                }
+            }
+        }
+    }
+}
