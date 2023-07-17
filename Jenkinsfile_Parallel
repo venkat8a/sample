@@ -1,0 +1,38 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('build') {
+            steps {
+                sh ' mvn clean package'
+                sh 'zip -r deployment.zip target'
+                sh 'cp -rp deploymnet.zip /home/slave/output'
+                echo 'build is success'
+            }
+        }
+        stage('Test') {
+            parallel {
+                stage ('Unit Test cases') {
+                    steps {
+                       sh 'mvn test'
+                       echo 'Testing is success'
+                    }
+                }
+                stage ('integration test cases') {
+                    steps {
+                       sh 'mvn test'
+                       echo 'Testing is success'
+                    }
+                }
+            }
+        }
+        stage('Deployment') {
+          steps {
+                sshagent(['Deployment_18.234.201.17']) {
+                 // sh 'scp -rp /home/slave/output/*.zip slave@18.234.201.17:/home/slave'
+                  echo 'Deployment is success'
+                }
+            }
+        }
+    }
+}
