@@ -1,0 +1,18 @@
+pipeline {
+       agent any
+       triggers {
+              pollSCM('30 19 * * *')
+       }
+       stages {
+              stage('clone') {
+                     steps {
+                            echo "clone is success"
+                     }
+              }
+              stage('clone') {
+                     steps {
+                            echo "clone is success"
+                     }
+              }
+       }
+}
