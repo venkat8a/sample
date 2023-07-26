@@ -1,0 +1,15 @@
+pipeline {
+    agent any
+    environment {
+        DEPLOY_TO = 'production'
+        Name = 'Venkat'
+    }
+    stages {
+        stage ('Env-stage') {
+            steps {
+                echo "${DEPLOY_TO}"
+                echo "${Name}"
+            }
+        }
+    }
+}
