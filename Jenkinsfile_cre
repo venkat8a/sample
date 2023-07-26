@@ -6,8 +6,9 @@ pipeline {
   stages {
     stage ('Load credentails') {
       steps {
-        echo "username is $MY_CRED_USER"
-        echo "username is $MY_CRED_PSW"
+        //echo "username is $MY_CRED_USER"
+        //echo "username is $MY_CRED_PSW"
+        echo "username is $MY_CRED"
       }
     }
   }
