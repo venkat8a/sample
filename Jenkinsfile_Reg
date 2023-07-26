@@ -1,0 +1,14 @@
+pipeline {
+    angent any
+    environment {
+        Registry_CRED = credentials('MY_Registry_CRED')
+    }
+    stages {
+        stage ('Load credentails') {
+            steps {
+                echo "My registry credentials is ${Registry_CRED}"
+                //sh 'docker login test.reg --credentails '${Registry_CRED}''
+            }
+        }
+    }
+}
